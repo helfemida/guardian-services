@@ -1,0 +1,7 @@
+torch
+torchvision
+Pillow
+scikit-learn
+kafka-python
+requests
+opencv-python-headless

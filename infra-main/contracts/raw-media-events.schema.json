@@ -1,0 +1,13 @@
+
+{
+  "schema_version": "1.0",
+  "event_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+  "facility_id": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+  "camera_id": "c9876a5e-4b3a-4d2c-9e1f-1234567890ab",
+  "bucket": "violence-media",
+  "object_key": "f47ac10b/c9876a5e/2026-04-12/1701428400_chunk.mp4",
+  "content_type": "video/mp4",
+  "duration_sec": 4.0,
+  "captured_at": "2026-04-12T14:00:00.000Z",
+  "edge_ingested_at": "2026-04-12T14:00:01.200Z"
+}

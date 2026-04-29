@@ -1,0 +1,21 @@
+logLevel: info
+
+hls: true
+hlsAddress: :8888
+
+webrtc: true
+webrtcAddress: :8889
+webrtcEncryption: false
+webrtcAllowOrigins: ['*']
+
+
+webrtcIPsFromInterfaces: true
+
+webrtcAdditionalHosts:
+  - 100.100.224.121
+  - 127.0.0.1
+
+paths:
+  camera1:
+    source: rtsp://admin:Qwerty123@192.168.0.21:554/cam/realmonitor?channel=1&subtype=0
+    rtspTransport: tcp

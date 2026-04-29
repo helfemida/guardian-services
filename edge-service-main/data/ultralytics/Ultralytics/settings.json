@@ -1,0 +1,21 @@
+{
+  "settings_version": "0.0.6",
+  "datasets_dir": "C:\\Users\\toreb\\Desktop\\datasets",
+  "weights_dir": "C:\\Users\\toreb\\Desktop\\edge-service\\weights",
+  "runs_dir": "C:\\Users\\toreb\\Desktop\\edge-service\\runs",
+  "uuid": "4065c8bce57703c027550994ebe373a0048d8274869467e59188ccdb4cfb69ff",
+  "sync": true,
+  "api_key": "",
+  "openai_api_key": "",
+  "clearml": true,
+  "comet": true,
+  "dvc": true,
+  "hub": true,
+  "mlflow": true,
+  "neptune": true,
+  "raytune": true,
+  "tensorboard": false,
+  "wandb": false,
+  "vscode_msg": true,
+  "openvino_msg": true
+}
