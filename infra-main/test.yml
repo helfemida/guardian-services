@@ -1,0 +1,12 @@
+logLevel: debug
+
+rtsp: true
+rtspAddress: :8554
+
+hls: true
+hlsAddress: :8888
+
+paths:
+  camera1:
+    source: 'rtsp://admin:Qwerty123@192.168.0.21:554/cam/realmonitor?channel=1&subtype=0'
+    rtspTransport: tcp

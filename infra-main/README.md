@@ -20,6 +20,7 @@ Local infrastructure for violence-detection development.
 - `contracts/violence-alerts.schema.json` - example payload for `violence-alerts`
 - `scripts/create-topics.sh` - safe idempotent Kafka topics bootstrap script
 
+
 ## Prerequisites
 
 - Docker Desktop with Docker Compose plugin

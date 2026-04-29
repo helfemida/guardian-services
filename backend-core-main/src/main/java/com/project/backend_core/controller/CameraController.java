@@ -9,9 +9,11 @@ import com.project.backend_core.repository.CameraRepository;
 import com.project.backend_core.repository.FacilityRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/camera")
@@ -45,12 +47,23 @@ public class CameraController {
         return this.cameraRepository.save(camera);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity.BodyBuilder delete(@PathVariable UUID id) {
+        this.cameraRepository.deleteById(id);
+        return ResponseEntity.ok();
+    }
+
+//    @PutMapping("/")
+//    public ResponseEntity.BodyBuilder delete(@PathVariable UUID id, @RequestBody CameraCreateDto cameraCreateDto) {
+//        return this.cameraRepository.updateCameraById(id, ca)
+//    }
+
     @GetMapping("/{id}")
     public CameraResponse getOne(@PathVariable String id) {
-        Camera camera = cameraRepository.findById(java.util.UUID.fromString(id))
+        Camera camera = cameraRepository.findById(UUID.fromString(id))
                 .orElseThrow();
 
-        return mapToResponse(camera);
+        return this.mapToResponse(camera);
     }
 
     private CameraResponse mapToResponse(Camera camera) {

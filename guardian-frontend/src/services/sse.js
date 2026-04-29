@@ -3,7 +3,7 @@
 const BASE_URL = import.meta.env.VITE_API_URL || '/api'
 
 export function createEventSource(path) {
-  // const auth = useAuthStore()
+  const auth = useAuthStore()
   const url = new URL(`${BASE_URL}${path}`, window.location.origin)
   if (auth.accessToken) {
     url.searchParams.set('token', auth.accessToken)
