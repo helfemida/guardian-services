@@ -142,7 +142,6 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 import { Search, Film, Video, Download, PlayCircle } from 'lucide-vue-next'
-import { camerasApi, historyApi } from '@/services/endpoints'
 import { useCamerasStore } from '@/stores/cameras'
 import { format, subHours } from 'date-fns'
 

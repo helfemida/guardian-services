@@ -16,5 +16,6 @@ public class CameraResponse {
     private String name;
     private String rtspUrl;
     private Boolean isActive;
+    private String streamUrl;
     private FacilityResponse facility;
 }

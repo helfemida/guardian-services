@@ -23,8 +23,8 @@
 
         <div class="stream-viewport">
           <video
-              v-if="streamUrl"
-              :src="streamUrl"
+              v-if="rtspUrl"
+              :src="rtspUrl"
               autoplay
               muted
               controls
@@ -39,7 +39,7 @@
 
         <div class="stream-footer">
           <p class="text-xs text-muted">
-            Stream URL: {{ streamUrl || '—' }}
+            Stream URL: {{ rtspUrl || '—' }}
           </p>
         </div>
       </div>

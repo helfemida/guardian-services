@@ -3,9 +3,9 @@ spring:
     name: backend-core
 
   kafka:
-    bootstrap-servers: localhost:29092
+    bootstrap-servers: localhost:9093
     consumer:
-      bootstrap-servers: localhost:29092
+      bootstrap-servers: localhost:9093
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       group-id: backend-core
@@ -22,7 +22,7 @@ spring:
       harassment: violence-alerts
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/harassment
+    url: jdbc:postgresql://localhost:5432/app_db
     username: postgres
     password: admin1234
 
@@ -54,7 +54,6 @@ spring:
 server:
   port: 8000
 
-applicationHost: "http://the.guardian.backend"
 
 application:
   security:

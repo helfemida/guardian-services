@@ -163,7 +163,7 @@ import {
   ArrowLeft, Camera, MapPin, VideoOff, Download,
   Check, Save, Bell
 } from 'lucide-vue-next'
-import { incidentsApi, alertsApi } from '@/services/endpoints'
+import { incidentsApi } from '@/services/endpoints'
 import ConfidenceBar from '@/components/common/ConfidenceBar.vue'
 import { format } from 'date-fns'
 import { useToast } from 'vue-toastification'

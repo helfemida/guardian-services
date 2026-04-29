@@ -28,7 +28,7 @@ public class IncidentController {
 
     @PatchMapping("/{id}/resolve")
     public ResponseEntity<Void> resolveIncident(@PathVariable UUID id, @RequestBody IncidentResolveRequest request) {
-        alertPersistenceService.resolveIncident(id, request.getConfirmation(), authFacade.getEmail());
+        alertPersistenceService.resolveIncident(id, request.getConfirmation(), null);
 
         return ResponseEntity.ok().build();
     }

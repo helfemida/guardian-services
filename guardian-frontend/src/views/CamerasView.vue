@@ -45,7 +45,7 @@ onMounted(async () => {
 })
 
 function getStreamUrl(camera) {
-  return camera.streamUrl
+  return camera.rtspUrl
 }
 </script>
 

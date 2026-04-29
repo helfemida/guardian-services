@@ -28,9 +28,9 @@ public class Camera {
     @Column(nullable = false, unique = true)
     private String name;
 
-    @Column(nullable = false)
-    private String rtsp_url;
+    @Column(name = "rtsp_url", nullable = false)
+    private String rtspUrl;
 
-    @Column(nullable = false)
-    private Boolean is_active;
+    @Column(name = "is_active", nullable = false)
+    private Boolean isActive;
 }

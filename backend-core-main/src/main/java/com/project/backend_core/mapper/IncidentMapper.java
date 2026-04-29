@@ -62,8 +62,8 @@ public class IncidentMapper {
         return CameraResponse.builder()
                 .id(camera.getId())
                 .name(camera.getName())
-                .rtspUrl(camera.getRtsp_url())
-                .isActive(camera.getIs_active())
+                .rtspUrl(camera.getRtspUrl())
+                .isActive(camera.getIsActive())
                 .facility(toFacilityResponse(camera.getFacility()))
                 .build();
     }
