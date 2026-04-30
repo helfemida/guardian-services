@@ -9,9 +9,9 @@
       <div class="card camera-card" v-for="c in cams" :key="c.id">
         <div class="camera-title">{{ c.name }}</div>
 
-        <video ref="videoPlayer" controls autoplay muted style="width:100%" class="video-js"></video>
-
-
+        <iframe
+            :src="getStreamUrl(c)"
+            class="video"/>
 
         <div class="camera-meta">
           {{ c.facility?.name || 'No facility' }}
@@ -28,26 +28,16 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { camerasApi } from '@/services/endpoints'
-import Hls from 'hls.js';
-
 
 const cams = ref([])
-const videoPlayer = ref(null);
-const streamUrl = 'http://localhost:8888/camera1/index.m3u8';
-let hls;
 
-onMounted(() => {
-  if (Hls.isSupported()) {
-    hls = new Hls();
-    hls.loadSource(streamUrl);
-    hls.attachMedia(videoPlayer.value);
-  } else if (videoPlayer.value.canPlayType('application/vnd.apple.mpegurl')) {
-    videoPlayer.value.src = streamUrl;
-  }
-});
+onMounted(async () => {
+  const { data } = await camerasApi.list()
+  cams.value = data || []
+})
 
-function getStreamUrl() {
-  return "http://localhost:8888/camera1/index.m3u8?cookieCheck=1"
+function getStreamUrl(camera) {
+  return "http://localhost:8889/camera1/"
 }
 </script>
 

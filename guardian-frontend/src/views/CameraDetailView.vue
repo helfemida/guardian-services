@@ -22,24 +22,14 @@
         </div>
 
         <div class="stream-viewport">
-          <video
-              v-if="rtspUrl"
-              :src="rtspUrl"
-              autoplay
-              muted
-              controls
-              playsinline
-              style="width:100%;height:100%;object-fit:cover"
-          ></video>
-
-          <div v-else class="stream-placeholder">
-            <p>No stream available</p>
-          </div>
+          <iframe
+              :src="streamUrl"
+              class="video"/>
         </div>
 
         <div class="stream-footer">
           <p class="text-xs text-muted">
-            Stream URL: {{ rtspUrl || '—' }}
+            Stream URL: {{ streamUrl || '—' }}
           </p>
         </div>
       </div>
@@ -85,13 +75,7 @@ const route = useRoute()
 const camera = ref(null)
 
 const streamUrl = computed(() => {
-  if (!camera.value) return null
-  return (
-      camera.value.streamUrl ||
-      camera.value.rtspUrl ||
-      camera.value.url ||
-      null
-  )
+  return "http://localhost:8889/camera1/"
 })
 
 onMounted(async () => {
@@ -176,6 +160,9 @@ onMounted(async () => {
 
 .font-mono {
   font-family: monospace;
+}
+.video {
+  height: 100%;
 }
 
 @media (max-width: 900px) {

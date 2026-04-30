@@ -4,15 +4,26 @@ import { incidentsApi } from '@/services/endpoints'
 
 export const useIncidentsStore = defineStore('incidents', () => {
   const incidents = ref([])
-  const summary   = ref({ total: 0, newCount: 0, last24h: 0, resolved: 0 })
-  const loading   = ref(false)
-  const total     = ref(0)
-  const page      = ref(0)
-  const pageSize  = ref(20)
-  const filters   = ref({ status: null, type: null, cameraId: null })
+  const loading = ref(false)
+  const total = ref(0)
+  const page = ref(0)
+  const pageSize = ref(20)
+  const filters = ref({ status: null })
+  const liveFeed = ref([])
 
-  // Live feed buffer (SSE pushed incidents)
-  const liveFeed  = ref([])
+  const summary = computed(() => {
+    const pending = incidents.value.filter(i => i.status === 'PENDING').length
+    const confirmed = incidents.value.filter(i => i.status === 'CONFIRMED').length
+    const falsePositive = incidents.value.filter(i => i.status === 'FALSE_POSITIVE').length
+
+    return {
+      total: incidents.value.length,
+      newCount: pending,
+      pending,
+      confirmed,
+      falsePositive
+    }
+  })
 
   const totalPages = computed(() => Math.ceil(total.value / pageSize.value))
 
@@ -20,42 +31,56 @@ export const useIncidentsStore = defineStore('incidents', () => {
     loading.value = true
     try {
       const { data } = await incidentsApi.list({
-        page: page.value,
-        size: pageSize.value,
         ...filters.value,
         ...params
       })
-      incidents.value = data.content
-      total.value     = data.total
+
+      const list = Array.isArray(data) ? data : data.content || []
+
+      incidents.value = list
+      total.value = Array.isArray(data) ? list.length : data.totalElements || data.total || list.length
     } finally {
       loading.value = false
     }
   }
 
-  async function fetchSummary() {
-    const { data } = await incidentsApi.list()
-    summary.value = data
+  async function fetchIncident(id) {
+    const { data } = await incidentsApi.get(id)
+    return data
   }
 
-  async function updateIncident(id, payload) {
-    const { data } = await incidentsApi.resolve(id, null)
+  async function updateIncident(id, confirmed) {
+    const { data } = await incidentsApi.resolve(id, {
+     confirmed
+    })
+
     const idx = incidents.value.findIndex(i => i.id === id)
     if (idx !== -1) incidents.value[idx] = data
+
     return data
   }
 
   function pushLiveIncident(incident) {
     liveFeed.value.unshift(incident)
+    incidents.value.unshift(incident)
+    total.value++
+
     if (liveFeed.value.length > 50) liveFeed.value.pop()
-    // Also bump summary counter
-    summary.value.newCount++
-    summary.value.total++
-    summary.value.last24h++
   }
 
   return {
-    incidents, summary, loading, total, page, pageSize, filters, liveFeed,
+    incidents,
+    loading,
+    total,
+    page,
+    pageSize,
+    filters,
+    liveFeed,
+    summary,
     totalPages,
-    fetchIncidents, fetchSummary, updateIncident, pushLiveIncident
+    fetchIncidents,
+    fetchIncident,
+    updateIncident,
+    pushLiveIncident
   }
 })

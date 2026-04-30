@@ -38,17 +38,6 @@
           <div class="breadcrumb">{{ currentRouteName }}</div>
         </div>
         <div class="topbar-right">
-          <!-- Live status indicator -->
-          <div class="live-indicator" :class="sseConnected ? 'connected' : 'disconnected'">
-            <span class="pulse-dot" :class="sseConnected ? 'online' : 'offline'"></span>
-            <span>{{ sseConnected ? 'Live' : 'Reconnecting…' }}</span>
-          </div>
-
-          <!-- Alert bell -->
-          <button class="topbar-btn" @click="$router.push('/alerts')" style="position:relative">
-            <Bell :size="17" />
-            <span v-if="newAlertCount > 0" class="alert-dot">{{ newAlertCount }}</span>
-          </button>
 
           <!-- User menu -->
           <div class="user-menu" @click="showUserMenu = !showUserMenu" ref="userMenuRef">

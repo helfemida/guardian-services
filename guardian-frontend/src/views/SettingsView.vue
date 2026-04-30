@@ -95,11 +95,11 @@
               <div class="grid-2">
                 <div class="form-group">
                   <label class="label">First Name *</label>
-                  <input v-model="userForm.firstName" class="input" />
+                  <input v-model="userForm.firstname" class="input" />
                 </div>
                 <div class="form-group">
-                  <label class="label">Full Name</label>
-                  <input v-model="userForm.lastName" class="input" />
+                  <label class="label">Last Name</label>
+                  <input v-model="userForm.lastname" class="input" />
                 </div>
                 <div class="form-group">
                   <label class="label">Email *</label>
@@ -148,7 +148,7 @@ const savingUser  = ref(false)
 const savingPw    = ref(false)
 const pwError     = ref('')
 
-const userForm = ref({ firstName: '', lastName: '', email: '', password: '', role: '' })
+const userForm = ref({ firstname: '', lastname: '', email: '', password: '', role: '' })
 const pwForm   = ref({ currentPassword: '', newPassword: '', confirmPassword: '' })
 
 onMounted(async () => {
@@ -163,7 +163,7 @@ async function addUser() {
     const { data } = await usersApi.list()
     users.value    = data
     showAddUser.value = false
-    userForm.value = { firstName: '', lastName: '', email: '', password: '', role: 'ANALYST' }
+    userForm.value = { firstname: '', lastname: '', email: '', password: '', role: 'GUARD' }
     toast.success('User created')
   } catch (e) {
     toast.error(e.response?.data?.detail || 'Failed to create user')

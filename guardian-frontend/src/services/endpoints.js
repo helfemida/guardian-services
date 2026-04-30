@@ -1,10 +1,13 @@
 import api from './api'
 
-export const camerasApi = {list: () => api.get('/api/camera/getAll'),
-    stats: () => api.get('/api/camera/getActive')}
+export const camerasApi = {
+    list: () => api.get('/api/camera/getAll'),
+    stats: () => api.get('/api/camera/getActive'),
+    get: (id) => api.get(`/api/camera/${id}`)
+}
 export const incidentsApi = {
     list: () => api.get('/api/v1/incidents'),
-    resolve: (id, resolved) => api.post(`/api/v1/incidents/${id}/resolve`, null, {params: {resolved}})
+    resolve: (id, resolved) => api.patch(`/api/v1/incidents/${id}/resolve`, resolved, )
 }
 
 export const authApi = {
@@ -23,7 +26,7 @@ export const authApi = {
 }
 
 export const usersApi = {
-    list:
+    list: () =>
         api.get('/api/v1/users', null),
 
     addGuard: (guardData) =>

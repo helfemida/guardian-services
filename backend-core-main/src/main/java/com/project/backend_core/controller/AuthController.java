@@ -22,7 +22,7 @@ public class AuthController {
     }
 
     @PostMapping("/add-guard")
-    @PreAuthorize("hasRole('ADMIN')")
+//    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<AuthResponse> addGuard(@RequestBody AddGuardRequest request) {
         return ResponseEntity.ok(authService.addGuard(request));
     }

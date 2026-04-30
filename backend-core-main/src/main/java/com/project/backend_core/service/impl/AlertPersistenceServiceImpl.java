@@ -86,7 +86,7 @@ public class AlertPersistenceServiceImpl implements AlertPersistenceService {
     @Override
     public void resolveIncident(UUID incidentId, Boolean confirmation, String email) {
         Incident incident = incidentRepository.findById(incidentId).orElseThrow(() -> new IllegalArgumentException("Incident id not found"));
-        User user = userRepository.findByEmail(email).orElseThrow(() -> new IllegalArgumentException("User not found"));
+        User user = userRepository.findByEmail(email).orElse(null);
 
         IncidentStatus newStatus = Boolean.TRUE.equals(confirmation)
                 ? IncidentStatus.CONFIRMED
